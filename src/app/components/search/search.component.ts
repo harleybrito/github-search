@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,12 +10,18 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   @Input() isHomeScreen: boolean = true;
+  @Input() fieldValue: string;
+  @Output() searchFieldEmitter: EventEmitter<string> = new EventEmitter();
 
-  constructor(private router: Router) { }
+  public searchField: FormControl = new FormControl();
 
-  ngOnInit(): void {  }
+  constructor(private formBuilder: FormBuilder) { }
 
-  public onSearchClicked(): void {
-    this.router.navigate(['/users/harleydebrito']);
+  ngOnInit(): void {
+    this.fieldValue ? this.searchField.setValue(this.fieldValue) : this.searchField.setValue(null);
+  }
+
+  public onSearchClicked(): void{
+    this.searchFieldEmitter.emit(this.searchField.value);
   }
 }

@@ -13,7 +13,6 @@ export class HomeScreenComponent implements OnInit {
 
   public ngOnInit(): void {  }
 
-  public onSearchClicked(): void {
-    this.router.navigate(['/users/harleydebrito']);
-  }
+  public searchFieldCall = (value: string): Promise<boolean> => this.router.navigate(['users', value])
+  
 }

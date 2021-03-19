@@ -1,7 +1,7 @@
 <div class="container" style="height: 100vh">
     <div class="row h-100 align-items-center justify-content-center">
         <div class="col-sm-8">
-            <app-search></app-search>
+            <app-search (searchFieldEmitter)="searchFieldCall($event)"></app-search>
         </div>
     </div>
 </div>

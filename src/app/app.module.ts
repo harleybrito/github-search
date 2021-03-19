@@ -9,6 +9,12 @@ import { GithubSearchLabelComponent } from './components/github-search-label/git
 import { SearchComponent } from './components/search/search.component';
 import { UserScreenComponent } from './screens/user-screen/user-screen.component';
 import { NoRouteScreenComponent } from './screens/no-route-screen/no-route-screen.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserPropertyIconizedComponent } from './components/user-property-iconized/user-property-iconized.component';
+import { BootstrapIconsModule } from 'ng-bootstrap-icons';
+import { allIcons } from 'ng-bootstrap-icons/icons';
+
 
 @NgModule({
   declarations: [
@@ -17,11 +23,15 @@ import { NoRouteScreenComponent } from './screens/no-route-screen/no-route-scree
     GithubSearchLabelComponent,
     SearchComponent,
     UserScreenComponent,
-    NoRouteScreenComponent
+    NoRouteScreenComponent,
+    UserPropertyIconizedComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BootstrapIconsModule.pick(allIcons),
     AppRoutingModule
   ],
   providers: [],
