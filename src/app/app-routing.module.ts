@@ -1,13 +1,15 @@
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NoRouteScreenComponent } from './screens/no-route-screen/no-route-screen.component';
+import { UserScreenComponent } from './screens/user-screen/user-screen.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeScreenComponent } from './home/home-screen.component';
+import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
+  { path: 'users/:username', component: UserScreenComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NoRouteScreenComponent }
 ];
 
 @NgModule({
