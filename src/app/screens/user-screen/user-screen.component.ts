@@ -9,8 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-screen',
-  templateUrl: './user-screen.component.html',
-  styleUrls: ['./user-screen.component.scss']
+  templateUrl: './user-screen.component.html'
 })
 
 export class UserScreenComponent implements OnInit {

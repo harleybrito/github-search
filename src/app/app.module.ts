@@ -15,6 +15,9 @@ import { UserPropertyIconizedComponent } from './components/user-property-iconiz
 import { BootstrapIconsModule } from 'ng-bootstrap-icons';
 import { allIcons } from 'ng-bootstrap-icons/icons';
 import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
+import { SuccesfullLoadedUserComponent } from './components/succesfull-loaded-user/succesfull-loaded-user.component';
+import { LoadingUserComponent } from './components/loading-user/loading-user.component';
+import { ErrorLoadedUserComponent } from './components/error-loaded-user/error-loaded-user.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
     SearchComponent,
     UserScreenComponent,
     NoRouteScreenComponent,
-    UserPropertyIconizedComponent
+    UserPropertyIconizedComponent,
+    SuccesfullLoadedUserComponent,
+    LoadingUserComponent,
+    ErrorLoadedUserComponent
   ],
   imports: [
     BrowserModule,
