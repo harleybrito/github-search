@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserPropertyIconizedComponent } from './components/user-property-iconized/user-property-iconized.component';
 import { BootstrapIconsModule } from 'ng-bootstrap-icons';
 import { allIcons } from 'ng-bootstrap-icons/icons';
+import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { allIcons } from 'ng-bootstrap-icons/icons';
     HttpClientModule,
     ReactiveFormsModule,
     BootstrapIconsModule.pick(allIcons),
+    NgxShimmerLoadingModule,
     AppRoutingModule
   ],
   providers: [],

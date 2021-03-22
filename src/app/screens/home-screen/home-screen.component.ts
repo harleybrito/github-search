@@ -1,17 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
-  templateUrl: './home-screen.component.html',
-  styleUrls: ['./home-screen.component.scss']
+  templateUrl: './home-screen.component.html'
 })
 
-export class HomeScreenComponent implements OnInit {
+export class HomeScreenComponent{
 
   constructor(private router: Router) { }
-
-  public ngOnInit(): void {  }
 
   public searchFieldCall = (value: string): Promise<boolean> => this.router.navigate(['users', value])
   

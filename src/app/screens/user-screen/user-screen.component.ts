@@ -1,7 +1,11 @@
+import { RepoService } from './../../services/repo.service';
+import { Repo } from './../../models/repo';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-screen',
@@ -11,34 +15,55 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router'
 
 export class UserScreenComponent implements OnInit {
   public user: User;
+  public repos: Repo[];
+  public isLoading: boolean;
+  public found: boolean;
   public fieldValue: string;
 
   constructor(
     private routeSnapshot: ActivatedRoute,
     private userService: UserService,
+    private repoService: RepoService,
     private router: Router
   ) { }
 
   public ngOnInit(): void {
+    this.isLoading = false;
+    this.found = false;
     const username = this.routeSnapshot.snapshot.params['username'];
-
     this.fieldValue = username;
-    
     this.search(this.fieldValue);
   }
 
   public search(username: string): void {
-    this.userService.load(`/${username}`).subscribe(
-      result => {
-        console.log(result);
-        this.user = result;
-        this.router.navigate(['users', username.toLowerCase()]);
-      },
-      error => {
-        this.router.navigate(['users', username.toLowerCase()]);
-        this.user = null;
-      }
+    this.isLoading = true;
+    this.userService.get(`/${username}`).pipe(
+      tap((user: User) => this.user = user),
+      switchMap((user: User) => this.repoService.getAll(`/${user.login}/repos`)),
+      tap((repos: Repo[]) => this.repos = repos)
+    ).subscribe(
+      success => this.successfulLoad(success, username),
+      error => this.errorLoad(error, username)
     );
   }
+
+  private successfulLoad(result, fieldValue: string): void {
+    console.log(result);
+    this.repos.sort((repoA: Repo, repoB: Repo) => (repoA.stargazers_count > repoB.stargazers_count ? -1 : 1));
+    this.isLoading = false;
+    this.found = true;
+    this.changeRoute(fieldValue);
+  }
+
+  private errorLoad(result: HttpErrorResponse, fieldValue: string): void {
+    console.log(result);
+    result.status == 404 ? this.found = false : this.found = true;
+    this.user = null;
+    this.repos = null;
+    this.isLoading = false;
+    this.changeRoute(fieldValue);
+  }
+
+  private changeRoute = (value: string): Promise<boolean> => this.router.navigate(['users', value.toLowerCase()]);
 
 }
