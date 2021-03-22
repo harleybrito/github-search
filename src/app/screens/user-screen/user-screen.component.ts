@@ -47,7 +47,7 @@ export class UserScreenComponent implements OnInit {
   }
 
   private successfulLoad(result, fieldValue: string): void {
-    console.log(result);
+    // console.log(result);
     this.repos.sort((repoA: Repo, repoB: Repo) => (repoA.stargazers_count > repoB.stargazers_count ? -1 : 1));
     this.isLoading = false;
     this.found = true;
@@ -55,7 +55,7 @@ export class UserScreenComponent implements OnInit {
   }
 
   private errorLoad(result: HttpErrorResponse, fieldValue: string): void {
-    console.log(result);
+    // console.log(result);
     result.status == 404 ? this.found = false : this.found = true;
     this.user = null;
     this.repos = null;
