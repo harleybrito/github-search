@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-property-iconized.component.html',
   styleUrls: ['./user-property-iconized.component.css']
 })
-export class UserPropertyIconizedComponent implements OnInit {
+export class UserPropertyIconizedComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

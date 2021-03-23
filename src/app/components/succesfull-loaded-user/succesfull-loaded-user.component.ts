@@ -8,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./succesfull-loaded-user.component.css']
 })
 export class SuccesfullLoadedUserComponent implements OnInit {
-  @Input() user: User;
-  @Input() repos: Repo[];
+  @Input() user: User = {};
+  @Input() repos: Repo[] = [];
 
   constructor() { }
 

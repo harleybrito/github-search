@@ -4,7 +4,7 @@ import { UserService } from './../../services/user.service';
 import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -39,23 +39,22 @@ export class UserScreenComponent implements OnInit {
     this.userService.get(`/${username}`).pipe(
       tap((user: User) => this.user = user),
       switchMap((user: User) => this.repoService.getAll(`/${user.login}/repos`)),
-      tap((repos: Repo[]) => this.repos = repos)
+      // tap((repos: Repo[]) => this.repos = repos)
     ).subscribe(
       success => this.successfulLoad(success, username),
       error => this.errorLoad(error, username)
     );
   }
 
-  private successfulLoad(result, fieldValue: string): void {
-    // console.log(result);
+  public successfulLoad(result, fieldValue: string): void {
+    this.repos = result;
     this.repos.sort((repoA: Repo, repoB: Repo) => (repoA.stargazers_count > repoB.stargazers_count ? -1 : 1));
     this.isLoading = false;
     this.found = true;
     this.changeRoute(fieldValue);
   }
 
-  private errorLoad(result: HttpErrorResponse, fieldValue: string): void {
-    // console.log(result);
+  public errorLoad(result: HttpErrorResponse, fieldValue: string): void {
     result.status == 404 ? this.found = false : this.found = true;
     this.user = null;
     this.repos = null;
@@ -63,6 +62,6 @@ export class UserScreenComponent implements OnInit {
     this.changeRoute(fieldValue);
   }
 
-  private changeRoute = (value: string): Promise<boolean> => this.router.navigate(['users', value.toLowerCase()]);
+  public changeRoute = (value: string): Promise<boolean> => this.router.navigate(['users', value.toLowerCase()]);
 
 }
