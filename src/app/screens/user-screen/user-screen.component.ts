@@ -39,7 +39,6 @@ export class UserScreenComponent implements OnInit {
     this.userService.get(`/${username}`).pipe(
       tap((user: User) => this.user = user),
       switchMap((user: User) => this.repoService.getAll(`/${user.login}/repos`)),
-      // tap((repos: Repo[]) => this.repos = repos)
     ).subscribe(
       success => this.successfulLoad(success, username),
       error => this.errorLoad(error, username)

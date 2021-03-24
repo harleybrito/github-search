@@ -27,8 +27,8 @@ export class RepoStubService {
             stargazers_count: 24
         },
         {
-            name: 'Respositório 4',
-            description: 'Repositório 4 é um repositório de teste que isso que aquilo. Repositório 4 é um repositório de teste que isso que aquilo.',
+            name: 'Respositório 5',
+            description: 'Repositório 5 é um repositório de teste que isso que aquilo. Repositório 5 é um repositório de teste que isso que aquilo.',
             stargazers_count: 98
         }
     ];

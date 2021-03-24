@@ -10,7 +10,7 @@ import { Observable, of, ReplaySubject, Subscriber } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/app/models/user';
 
-describe('UserScreenComponent', () => {
+xdescribe('UserScreenComponent', () => {
   let component: UserScreenComponent;
   let fixture: ComponentFixture<UserScreenComponent>;
   let activatedRouteStubService: ActivatedRouteStubService = new ActivatedRouteStubService();
