@@ -9,13 +9,12 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  @Input() isHomeScreen: boolean = true;
-  @Input() fieldValue: string;
-  @Output() searchFieldEmitter: EventEmitter<string> = new EventEmitter();
+  @Input()  public isHomeScreen: boolean = true;
+  @Input()  public fieldValue: string;
+  @Output() public searchFieldEmitter: EventEmitter<string> = new EventEmitter();
+            public searchField: FormControl = new FormControl();
 
-  public searchField: FormControl = new FormControl();
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.fieldValue ? this.searchField.setValue(this.fieldValue) : this.searchField.setValue(null);
