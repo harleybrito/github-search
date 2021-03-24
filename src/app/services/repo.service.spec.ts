@@ -26,8 +26,6 @@ describe('RepoService', () => {
         repoService.getAll("/username/repos").subscribe(repos => {
             expect(repos).toBeTruthy('No repos returned');
             expect(repos.length).toBe(5, "Incorrect number of repos");
-            const repo = repos.find(repo => repo.name === 'Repositório 1');
-            expect(repo.stargazers_count).toBe(54);
         });
 
         const req = httpTestingController.expectOne('https://api.github.com/users/username/repos');
