@@ -1,7 +1,7 @@
 import { UserPropertyIconizedComponent } from './user-property-iconized.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-xdescribe('UserPropertyIconizedComponent', () => {
+describe('UserPropertyIconizedComponent', () => {
   let component: UserPropertyIconizedComponent;
   let fixture: ComponentFixture<UserPropertyIconizedComponent>;
 

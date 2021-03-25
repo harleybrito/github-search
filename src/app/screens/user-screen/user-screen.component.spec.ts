@@ -10,8 +10,6 @@ import { UserService } from 'src/app/services/user.service';
 import { UserStubService } from 'src/app/mock/user-stub.service';
 import { RepoStubService } from 'src/app/mock/repo-stub.service';
 
-
-
 describe('UserScreenComponent', () => {
     let component: UserScreenComponent;
     let fixture: ComponentFixture<UserScreenComponent>;
@@ -59,11 +57,4 @@ describe('UserScreenComponent', () => {
     it('should call a connection error', () => {
         component.search('400');
     });
-
-    // it('should call "onReturnButtonClicked" and navigate', () => {
-    //     const button: DebugElement = debugElement.query(By.css('button'));
-    //     button.nativeElement.dispatchEvent(new Event('click'));
-    //     expect(component.onReturnButtonClicked).toHaveBeenCalledTimes(1);
-    //     expect(router.navigate).toHaveBeenCalled();
-    // });
 });
