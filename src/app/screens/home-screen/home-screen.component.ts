@@ -10,6 +10,7 @@ export class HomeScreenComponent{
 
   constructor(private router: Router) { }
 
-  public searchFieldCall = (value: string): Promise<boolean> => this.router.navigate(['users', value])
-  
+  public searchFieldCall(value: string): Promise<boolean> {
+    return this.router.navigate(['users', value]);
+  }
 }
