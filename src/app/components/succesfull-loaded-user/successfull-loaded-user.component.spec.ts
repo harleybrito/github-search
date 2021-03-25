@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SuccesfullLoadedUserComponent } from './succesfull-loaded-user.component';
 
-xdescribe('SuccesfullLoadedUserComponent', () => {
+describe('SuccesfullLoadedUserComponent', () => {
   let component: SuccesfullLoadedUserComponent;
   let fixture: ComponentFixture<SuccesfullLoadedUserComponent>;
 

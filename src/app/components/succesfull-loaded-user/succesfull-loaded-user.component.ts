@@ -7,13 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './succesfull-loaded-user.component.html',
   styleUrls: ['./succesfull-loaded-user.component.css']
 })
-export class SuccesfullLoadedUserComponent implements OnInit {
+export class SuccesfullLoadedUserComponent {
   @Input() user: User = {};
   @Input() repos: Repo[] = [];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
