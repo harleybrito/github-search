@@ -1,5 +1,5 @@
 import { Observable, Subscriber } from 'rxjs';
-import { Repo } from './../models/repo';
+import { Repo } from '../models/repo';
 import { Injectable } from "@angular/core";
 
 @Injectable()

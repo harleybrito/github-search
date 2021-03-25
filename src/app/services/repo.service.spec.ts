@@ -1,4 +1,4 @@
-import { RepoStubService } from './../test/repo-stub.service';
+import { RepoStubService } from '../mock/repo-stub.service';
 import { RepoService } from './repo.service';
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
