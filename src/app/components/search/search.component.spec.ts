@@ -1,5 +1,5 @@
 import { AppModule } from './../../app.module';
-import { TestBed, ComponentFixture, async, fakeAsync, tick, flush } from '@angular/core/testing';
+import { TestBed, ComponentFixture, async, fakeAsync, tick, flush, flushMicrotasks } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { SearchComponent } from './search.component';
 import { By } from '@angular/platform-browser';
@@ -35,31 +35,22 @@ describe('SearchComponent', () => {
     });
 
     it('deve emitir o valor do campo de procura', fakeAsync(() => {
-        flush();
+        const onSearchClickedSpy: jasmine.Spy<() => void> = spyOn(component, 'onSearchClicked');
         const input: DebugElement[] = debugElement.queryAll(By.css('#searchInput'));
         const button: DebugElement[] = debugElement.queryAll(By.css('#searchButton'));
         input[0].nativeElement.value = "harleydebrito";
         input[0].nativeElement.dispatchEvent(new Event('input'));
-        fixture.detectChanges();
         flush();
+        fixture.detectChanges();
         expect(input[0].nativeElement.value).toMatch(component.searchField.value);
-        button[0].triggerEventHandler('click', { button: 0 });
-        fixture.detectChanges();
-        flush();
-        const onSearchClickedSpy: jasmine.Spy<() => void> = spyOn(component, 'onSearchClicked').and.callThrough();
-        flush();
+        button[0].nativeElement.dispatchEvent(new Event('click'));
+        flushMicrotasks();
         expect(onSearchClickedSpy).toHaveBeenCalled();
     }));
 
-    it('onSearchClicked deve ser acionado', () => {
-        
-        const onSearchClickedSpy: jasmine.Spy<() => void> = spyOn(component, 'onSearchClicked');
-        const input: DebugElement[] = debugElement.queryAll(By.css('#searchInput'));
-        input[0].nativeElement.value = 'harleydebrito';
-        input[0].nativeElement.dispatchEvent(new Event('input'));
-        fixture.detectChanges();
-        expect(input[0].nativeElement.value).toMatch(component.searchField.value);
+    it('onSearchClicked deve ser acionado', fakeAsync(() => {
+        const onSearchClickedSpy: jasmine.Spy<() => void> = spyOn(component, 'onSearchClicked').and.callThrough();
         component.onSearchClicked();
         expect(onSearchClickedSpy).toHaveBeenCalled();
-    });
+    }));
 });

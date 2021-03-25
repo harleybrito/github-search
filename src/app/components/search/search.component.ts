@@ -16,11 +16,11 @@ export class SearchComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.fieldValue ? this.searchField.setValue(this.fieldValue) : this.searchField.setValue(null);
-  }
-
-  public onSearchClicked(): void{
+  } 
+  
+  public onSearchClicked(): void {
     this.searchFieldEmitter.emit(this.searchField.value);
-  }
+  } 
 }
