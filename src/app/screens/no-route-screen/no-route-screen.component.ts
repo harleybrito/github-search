@@ -10,5 +10,7 @@ export class NoRouteScreenComponent{
 
   constructor(private router: Router) { }
 
-  public onReturnButtonClicked = (): Promise<boolean> => this.router.navigate(['/home']); 
+  public onReturnButtonClicked(): Promise<boolean> {
+    return this.router.navigate(['/home']); 
+  } 
 }
